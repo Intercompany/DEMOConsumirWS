@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://tempuri.org/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+      <s:element name="validar">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="user" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="pass" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="validarResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="validarResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="validarSoapIn">
+    <wsdl:part name="parameters" element="tns:validar" />
+  </wsdl:message>
+  <wsdl:message name="validarSoapOut">
+    <wsdl:part name="parameters" element="tns:validarResponse" />
+  </wsdl:message>
+  <wsdl:portType name="WebServicePrueba1Soap">
+    <wsdl:operation name="validar">
+      <wsdl:input message="tns:validarSoapIn" />
+      <wsdl:output message="tns:validarSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="WebServicePrueba1Soap" type="tns:WebServicePrueba1Soap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="validar">
+      <soap:operation soapAction="http://tempuri.org/validar" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="WebServicePrueba1Soap12" type="tns:WebServicePrueba1Soap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="validar">
+      <soap12:operation soapAction="http://tempuri.org/validar" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="WebServicePrueba1">
+    <wsdl:port name="WebServicePrueba1Soap" binding="tns:WebServicePrueba1Soap">
+      <soap:address location="http://localhost:58319/WebServicePrueba1.asmx" />
+    </wsdl:port>
+    <wsdl:port name="WebServicePrueba1Soap12" binding="tns:WebServicePrueba1Soap12">
+      <soap12:address location="http://localhost:58319/WebServicePrueba1.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
